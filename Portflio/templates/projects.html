@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}Projects | INTOENIGMA{% endblock %}
+
+{% block content %}
+<section class="projects-section">
+    <h1>Projects</h1>
+    <p class="subtitle">A showcase of ideas turned into reality — where creativity meets code.</p>
+
+    <div class="projects-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            <div class="project-image" style="background-image: url('{{ project.image_url }}');"></div>
+            <div class="project-info">
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.description }}</p>
+                <div class="project-links">
+                    {% if project.demo_url %}
+                    <a href="{{ project.demo_url }}" target="_blank" class="btn">Live Demo</a>
+                    {% endif %}
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="btn-outline">GitHub</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<style>
+    .projects-section {
+        text-align: center;
+        padding: 60px 0;
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .projects-section h1 {
+        font-size: 2.5rem;
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 10px;
+    }
+
+    .projects-section .subtitle {
+        color: var(--muted);
+        margin-bottom: 50px;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .project-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: left;
+    }
+
+    .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .project-image {
+        width: 100%;
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+
+    .project-info h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--text);
+    }
+
+    .project-info p {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 18px;
+        line-height: 1.6;
+    }
+
+    .project-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn,
+    .btn-outline {
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn {
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        color: #fff;
+        border: none;
+    }
+
+    .btn-outline {
+        border: 1px solid var(--accent1);
+        color: var(--accent1);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+
+    .btn-outline:hover {
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        color: #fff;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}

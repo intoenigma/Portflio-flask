@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>{% block title %}{% endblock %}</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+    --bg1: #0b0f19;
+    --bg2: #11162a;
+    --accent1: #6C63FF;
+    --accent2: #00F5D4;
+    --text: #ffffff;
+    --muted: #b0b6c4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at 10% 10%, rgba(108,99,255,0.08), transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(0,245,212,0.08), transparent 50%),
+                linear-gradient(180deg, var(--bg1), var(--bg2));
+    overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Navbar */
+    nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 8%;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    z-index: 100;
+    }
+    .logo {
+    font-weight: 800;
+    font-size: 20px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+    }
+    .nav-links {
+    display: flex;
+    gap: 26px;
+    }
+    .nav-links a {
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+    }
+    .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg,var(--accent1),var(--accent2));
+    transition: width 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Main content area */
+    main {
+    padding-top: 100px;
+    min-height: 100vh;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    }
+
+    /* Footer */
+    footer {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: var(--muted);
+    font-size: 13px;
+    }
+
+    @media (max-width:700px){
+    nav{flex-direction:column;gap:10px;}
+    .nav-links{flex-wrap:wrap;justify-content:center;}
+    }
+</style>
+</head>
+<body>
+<nav>
+    <div class="logo">INTOENIGMA</div>
+    <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/projects">Projects</a>
+    <a href="/contact">Contact</a>
+    </div>
+</nav>
+
+<main>
+    {% block content %}
+    <!-- Page-specific content will go here -->
+    {% endblock %}
+</main>
+
+<footer>
+    © 2025 Madhav | Built with 💜, HTML, and <code>print()</code>
+</footer>
+</body>
+</html>
