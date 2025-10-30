@@ -2,32 +2,35 @@
 {% block title %}Contact | INTOENIGMA{% endblock %}
 
 {% block content %}
-
 <section class="contact-section">
-    
     <h1>Let's Connect</h1>
     <p class="subtitle">Have a project, idea, or just want to say hi? Drop me a message.</p>
 
-    <form class="contact-form" action="/contacts" method="POST">
-        <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required />
+    {% if success %}
+        <div class="success-box">
+            ✅ Thanks {{ name }}! Your message has been received. I'll get back to you at <strong>{{ email }}</strong> soon.
         </div>
+    {% else %}
+        <form class="contact-form" action="/contact" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
 
-        <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" required />
-        </div>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required />
+            </div>
 
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-        </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
 
-        <button type="submit" class="send-btn">Send Message</button>
-    </form>
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
+    {% endif %}
 </section>
-
 
 <style>
     .contact-section {
@@ -109,15 +112,21 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
+    .success-box {
+        background: rgba(0, 245, 212, 0.1);
+        border: 1px solid var(--accent2);
+        color: var(--accent2);
+        padding: 16px 20px;
+        border-radius: 8px;
+        max-width: 600px;
+        margin: 30px auto;
+        text-align: center;
+        animation: fadeIn 0.6s ease-out;
+    }
+
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(15px); }
         to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-        .contact-form {
-            padding: 25px;
-        }
     }
 </style>
 {% endblock %}
